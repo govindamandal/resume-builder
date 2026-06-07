@@ -452,6 +452,19 @@ legend {
   font-weight: 700;
 }
 
+.profile-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+}
+
+.profile-links a,
+.profile-links span {
+  color: var(--accent);
+  font-weight: 800;
+  text-decoration: none;
+}
+
 .template-modern {
   padding: 0;
 }

@@ -18,6 +18,11 @@ interface EducationItem {
   details: string;
 }
 
+interface ProfileLink {
+  label: string;
+  url: string;
+}
+
 interface ResumeDraft {
   name: string;
   title: string;
@@ -31,53 +36,97 @@ interface ResumeDraft {
   template: TemplateName;
   color: string;
   zoom: number;
+  links: ProfileLink[];
   experience: ExperienceItem[];
   education: EducationItem[];
 }
 
-const STORAGE_KEY = "resume-studio-draft";
+const STORAGE_KEY = "resume-studio-draft-v3";
 
 const sampleData: ResumeDraft = {
   name: "Govinda Mandal",
-  title: "Senior Product Designer",
-  email: "avery.taylor@email.com",
+  title: "Senior Full Stack Developer",
+  email: "govinda4india@gmail.com",
   phone: "",
-  location: "Delhi",
-  website: "averytaylor.design",
+  location: "Delhi, India",
+  website: "",
   summary:
-    "Product designer with 7 years of experience creating user-centered SaaS products. Skilled at turning research into clear product strategy, polished interfaces, and measurable growth.",
-  skills: "User research, Product strategy, Figma, Prototyping, Design systems, Usability testing, Accessibility",
-  certifications: "Google UX Design Certificate, Certified Scrum Product Owner",
+    "Full Stack Engineer with 8+ years of experience architecting and delivering production-grade backend systems at scale. Deep expertise in Node.js microservices, event-driven architectures with Apache Kafka, MongoDB schema design and query optimisation, and cloud-native deployments on AWS with Kubernetes. Proven track record of designing RESTful APIs, implementing CI/CD pipelines, and leading cross-functional engineering teams. Strong independent problem-solver with an ownership mindset.",
+  skills:
+    "Node.js, TypeScript, JavaScript, Java, PHP, Python, MongoDB, PostgreSQL, MySQL, Apache Kafka, WebSocket, REST API, AWS Lambda, EC2, S3, Lightsail, AWS CodePipeline, Kubernetes, Docker, CI/CD, NestJS, Express.js, Feathers.js, Vue.js, Nuxt.js, React, Next.js, CodeIgniter, Laravel, Git, Agile/Scrum, JIRA, GraphQL, Webpack, Storybook, Redis, tRPC, OAuth 2.0, JWT, Claude, Cursor, GitHub Copilot, Windsurf",
+  certifications:
+    "Distributed Systems Design, Event-Driven Architecture with Kafka, MongoDB Schema and Query Optimisation, Kubernetes Deployments, CI/CD Pipeline Automation, Node.js Internals and Async Workflows, Microservices Architecture, RESTful API Design and Governance, Cloud-Native Development with AWS, Root Cause Analysis and Debugging, Agile/Scrum Delivery, Technical Mentorship and Code Review",
   template: "classic",
   color: "#2563eb",
-  zoom: 88,
+  zoom: 78,
+  links: [
+    { label: "LinkedIn", url: "" },
+    { label: "GitHub", url: "" },
+    { label: "Other Social Profile", url: "" }
+  ],
   experience: [
     {
-      role: "Senior Product Designer",
-      company: "Bright Labs",
-      start: "2022",
-      end: "Present",
-      location: "Remote",
+      role: "Senior Software Consultant",
+      company: "Propulsion Consultancy Service (Client: Golf District)",
+      start: "Jan 2025",
+      end: "Apr 2026",
+      location: "Indore, India (Remote)",
       highlights:
-        "Led a checkout redesign that increased trial starts by 24%\nBuilt a component library now used by 14 product teams\nPartnered with research to run monthly usability studies"
+        "Redesigned the Golf District admin portal from the ground up using TypeScript, Next.js, React, tRPC, Node.js, and MySQL\nBuilt and shipped 12+ admin modules including course management, providers, customers, bookings, live tee sheets, reports, and analytics\nIntegrated AWS Lambda and S3 for serverless compute and media/document storage\nImplemented Redis caching strategies for high-frequency read operations\nEstablished CI/CD pipelines with Docker for consistent deployments across development and production\nCollaborated with stakeholders in an Agile/JIRA-driven workflow to turn business requirements into scalable technical solutions\nStack: TypeScript, Node.js, React, Next.js, tRPC, MySQL, AWS Lambda, S3, Redis, Docker, CI/CD, REST API, Agile/JIRA"
     },
     {
-      role: "UX Designer",
-      company: "Northstar Health",
-      start: "2019",
-      end: "2022",
-      location: "Chicago, IL",
+      role: "Senior Software Engineer",
+      company: "First Due",
+      start: "Jul 2024",
+      end: "Oct 2024",
+      location: "Hyderabad, India (Remote)",
       highlights:
-        "Designed clinician workflows for scheduling and intake\nReduced support tickets by 31% with clearer patient onboarding\nFacilitated workshops with engineering, product, and compliance"
+        "Optimised RESTful APIs in PHP/Node.js for a Fire Management System, achieving a 40% reduction in client integration time\nDesigned and tuned SQL schemas and indexes, improving data retrieval performance and scalability by 25%\nBuilt a reusable Vue.js component library integrated with Storybook, increasing user engagement by 30%\nConducted systematic code reviews and integration testing, improving software reliability by 20%\nStack: Node.js, PHP, YII, PostgreSQL, Vue.js, Docker, Storybook, REST API, Git, Agile/JIRA"
+    },
+    {
+      role: "Analyst Software Developer",
+      company: "ValueLabs",
+      start: "May 2022",
+      end: "Feb 2024",
+      location: "Hyderabad, India (Remote)",
+      highlights:
+        "Implemented and optimised RESTful APIs in Node.js, reducing client integration time by 40% across diverse platforms\nDesigned MongoDB and PostgreSQL schemas with indexing strategies that improved query performance by 25%\nDeveloped intuitive Vue.js interfaces, boosting user engagement by 30% across enterprise applications\nAchieved an 85-90% on-time delivery rate across multiple concurrent feature streams\nTrained and mentored 8 new engineers on scalable API development with Node.js and Next.js; conducted regular code reviews\nStack: Node.js, Vue.js, Next.js, MongoDB, PostgreSQL, REST API, Git, Agile/JIRA"
+    },
+    {
+      role: "Lead Developer",
+      company: "Infoicon Technologies",
+      start: "Jun 2021",
+      end: "Mar 2022",
+      location: "Noida, India",
+      highlights:
+        "Led end-to-end delivery of a MERN-based Job Manager from architecture through Kubernetes deployment, driving a 25% increase in client satisfaction\nArchitected Feathers.js microservices with PostgreSQL, exposing REST and WebSocket APIs consumed by Nuxt.js frontends\nBuilt a real-time chat application with text, audio, and video using Node.js and WebSockets, supporting 5,000+ concurrent users\nImplemented 3D geospatial mesh views using Vue.js, THREE.js, and Mapbox GL\nMentored junior engineers on JavaScript, PHP, Laravel, CodeIgniter, Vue.js, and Node.js best practices\nStack: Node.js, MongoDB, PostgreSQL, Feathers.js, Nuxt.js, Vuetify, Vue.js, THREE.js, WebSocket, Kubernetes, REST API"
+    },
+    {
+      role: "Programmer",
+      company: "Binary Semantics Limited",
+      start: "Mar 2020",
+      end: "Jun 2021",
+      location: "Gurugram, India",
+      highlights:
+        "Delivered solutions for NerdsDesk CRM, NerdsShop E-Commerce, and SupportNerds Tech Support using PHP, Laravel, and CodeIgniter\nManaged seven parallel projects across CRM, E-Commerce, and blog platforms while maintaining code quality and client SLAs\nCollaborated with QA and design teams to identify defects and improve overall system performance\nStack: PHP, Laravel, CodeIgniter, Vue.js, Node.js, MySQL, WordPress, HTML/CSS, Git"
+    },
+    {
+      role: "Software Engineer",
+      company: "Webkul Software Pvt Ltd",
+      start: "Jul 2017",
+      end: "Mar 2020",
+      location: "Noida, India",
+      highlights:
+        "Developed 15+ production extensions for Shopware 6 and OpenCart E-Commerce platforms including POS, Marketplace, QuickBooks Connector, and payment gateways\nBuilt Seller-Buyer Chat and Admin-Buyer Chat modules using Node.js, PHP, and MySQL for real-time in-platform messaging\nTrained 10+ developers on OpenCart and Shopware 6 extension development and established modular PHP best practices\nImplemented CI/CD pipelines with Docker for consistent deployments across development and staging\nStack: PHP, Symfony, Node.js, Vue.js, OpenCart, Shopware 6, MySQL, Docker, CI/CD, REST API, Git"
     }
   ],
   education: [
     {
-      degree: "B.A. Communication Design",
-      school: "State University",
-      year: "2018",
-      location: "Madison, WI",
-      details: "Graduated magna cum laude. Coursework in interaction design and visual systems."
+      degree: "B.E. in Information Technology",
+      school: "RGTU",
+      year: "Jun 2016",
+      location: "Bhopal, India",
+      details: ""
     }
   ]
 };
@@ -109,6 +158,7 @@ const colors = [
 const contacts = computed(() => [resume.email, resume.phone, resume.location, resume.website].filter(Boolean));
 const skills = computed(() => splitList(resume.skills));
 const certifications = computed(() => splitList(resume.certifications));
+const profileLinks = computed(() => resume.links.filter((link) => link.label || link.url));
 const previewTitle = computed(() => (resume.name ? `${resume.name}'s resume` : "Untitled resume"));
 const previewClass = computed(() => `resume-paper template-${resume.template}`);
 const accentStyle = computed(() => ({ "--accent": resume.color, "--zoom": String(resume.zoom / 100) }));
@@ -118,10 +168,10 @@ const resumeScore = computed(() => {
     resume.name,
     resume.title,
     resume.email,
-    resume.phone,
     resume.summary.length > 80,
     resume.experience.some((item) => item.role && item.company && item.highlights),
     resume.education.some((item) => item.degree && item.school),
+    profileLinks.value.length >= 2,
     skills.value.length >= 5,
     splitLines(resume.experience.map((item) => item.highlights).join("\n")).length >= 4
   ];
@@ -149,6 +199,12 @@ function splitLines(value = "") {
     .filter(Boolean);
 }
 
+function linkHref(url: string) {
+  if (!url) return "";
+  if (/^(https?:|mailto:|tel:)/i.test(url)) return url;
+  return `https://${url}`;
+}
+
 function assignDraft(nextDraft: ResumeDraft) {
   Object.assign(resume, cloneDraft(nextDraft));
 }
@@ -159,6 +215,10 @@ function addExperience() {
 
 function addEducation() {
   resume.education.push({ degree: "", school: "", year: "", location: "", details: "" });
+}
+
+function addLink() {
+  resume.links.push({ label: "", url: "" });
 }
 
 function clearDraft() {
@@ -173,6 +233,7 @@ function clearDraft() {
     summary: "",
     skills: "",
     certifications: "",
+    links: [],
     experience: [],
     education: []
   });
@@ -312,6 +373,22 @@ onMounted(() => {
               Summary
               <textarea v-model="resume.summary" name="summary" rows="6" placeholder="Write a concise professional summary..." />
             </label>
+            <div class="section-row">
+              <h2>Profile links</h2>
+              <button class="small-button" type="button" @click="addLink">Add link</button>
+            </div>
+            <div class="dynamic-list">
+              <article v-for="(link, index) in resume.links" :key="index" class="editor-card">
+                <div class="card-actions">
+                  <strong>Link</strong>
+                  <button class="icon-button" type="button" aria-label="Remove link" @click="resume.links.splice(index, 1)">x</button>
+                </div>
+                <div class="field-grid">
+                  <label>Label<input v-model="link.label" placeholder="LinkedIn" /></label>
+                  <label>URL<input v-model="link.url" placeholder="https://linkedin.com/in/..." /></label>
+                </div>
+              </article>
+            </div>
           </section>
 
           <section v-show="activeTab === 'experience'" class="form-section active">
@@ -377,14 +454,14 @@ onMounted(() => {
               <span class="hint">Separate skills with commas.</span>
             </label>
             <label>
-              Certifications
+              Key competencies
               <textarea
                 v-model="resume.certifications"
                 name="certifications"
                 rows="4"
-                placeholder="Certified Scrum Product Owner, Google UX Design Certificate"
+                placeholder="Distributed systems, Kafka, MongoDB optimisation, Kubernetes"
               />
-              <span class="hint">Separate certifications with commas.</span>
+              <span class="hint">Separate competencies with commas.</span>
             </label>
             <div class="score-box">
               <strong>{{ resumeScore }}%</strong>
@@ -450,6 +527,16 @@ onMounted(() => {
                 <p>{{ resume.summary }}</p>
               </section>
 
+              <section v-if="profileLinks.length" class="resume-section">
+                <h3>Links</h3>
+                <div class="profile-links">
+                  <template v-for="link in profileLinks" :key="`${link.label}-${link.url}`">
+                    <a v-if="link.url" :href="linkHref(link.url)" target="_blank" rel="noreferrer">{{ link.label || link.url }}</a>
+                    <span v-else>{{ link.label }}</span>
+                  </template>
+                </div>
+              </section>
+
               <section v-if="resume.experience.some((item) => item.role || item.company || item.highlights)" class="resume-section">
                 <h3>Experience</h3>
                 <div v-for="(item, index) in resume.experience" :key="`exp-${index}`" class="resume-item">
@@ -488,7 +575,7 @@ onMounted(() => {
               </section>
 
               <section v-if="certifications.length" class="resume-section">
-                <h3>Certifications</h3>
+                <h3>Key Competencies</h3>
                 <ul>
                   <li v-for="certification in certifications" :key="certification">{{ certification }}</li>
                 </ul>
