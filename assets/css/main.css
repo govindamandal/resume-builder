@@ -763,7 +763,13 @@ legend {
   }
 }
 
+@page {
+  size: Letter;
+  margin: 0.65in 0.62in 0.7in;
+}
+
 @media print {
+  html,
   body {
     background: #fff;
   }
@@ -786,7 +792,18 @@ legend {
     width: auto;
     min-height: auto;
     margin: 0;
+    padding: 0;
     box-shadow: none;
     transform: none;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .template-modern .resume-header,
+  .template-modern .resume-body,
+  .template-sidebar .resume-header,
+  .template-sidebar .resume-body {
+    padding-left: 0;
+    padding-right: 0;
   }
 }
