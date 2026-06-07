@@ -765,7 +765,7 @@ legend {
 
 @page {
   size: Letter;
-  margin: 0.65in 0.62in 0.7in;
+  margin: 0.9in;
 }
 
 @media print {
@@ -792,9 +792,11 @@ legend {
     width: auto;
     min-height: auto;
     margin: 0;
-    padding: 0;
+    padding: 0.16in;
+    box-decoration-break: clone;
     box-shadow: none;
     transform: none;
+    -webkit-box-decoration-break: clone;
     print-color-adjust: exact;
     -webkit-print-color-adjust: exact;
   }
