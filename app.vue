@@ -6,6 +6,7 @@ interface ExperienceItem {
   company: string;
   start: string;
   end: string;
+  current: boolean;
   location: string;
   highlights: string;
 }
@@ -70,6 +71,7 @@ const sampleData: ResumeDraft = {
       company: "Propulsion Consultancy Service (Client: Golf District)",
       start: "2025-01",
       end: "2026-04",
+      current: false,
       location: "Indore, India (Remote)",
       highlights:
         "Redesigned the Golf District admin portal from the ground up using TypeScript, Next.js, React, tRPC, Node.js, and MySQL\nBuilt and shipped 12+ admin modules including course management, providers, customers, bookings, live tee sheets, reports, and analytics\nIntegrated AWS Lambda and S3 for serverless compute and media/document storage\nImplemented Redis caching strategies for high-frequency read operations\nEstablished CI/CD pipelines with Docker for consistent deployments across development and production\nCollaborated with stakeholders in an Agile/JIRA-driven workflow to turn business requirements into scalable technical solutions\nStack: TypeScript, Node.js, React, Next.js, tRPC, MySQL, AWS Lambda, S3, Redis, Docker, CI/CD, REST API, Agile/JIRA"
@@ -79,6 +81,7 @@ const sampleData: ResumeDraft = {
       company: "First Due",
       start: "2024-07",
       end: "2024-10",
+      current: false,
       location: "Hyderabad, India (Remote)",
       highlights:
         "Optimised RESTful APIs in PHP/Node.js for a Fire Management System, achieving a 40% reduction in client integration time\nDesigned and tuned SQL schemas and indexes, improving data retrieval performance and scalability by 25%\nBuilt a reusable Vue.js component library integrated with Storybook, increasing user engagement by 30%\nConducted systematic code reviews and integration testing, improving software reliability by 20%\nStack: Node.js, PHP, YII, PostgreSQL, Vue.js, Docker, Storybook, REST API, Git, Agile/JIRA"
@@ -88,6 +91,7 @@ const sampleData: ResumeDraft = {
       company: "ValueLabs",
       start: "2022-05",
       end: "2024-02",
+      current: false,
       location: "Hyderabad, India (Remote)",
       highlights:
         "Implemented and optimised RESTful APIs in Node.js, reducing client integration time by 40% across diverse platforms\nDesigned MongoDB and PostgreSQL schemas with indexing strategies that improved query performance by 25%\nDeveloped intuitive Vue.js interfaces, boosting user engagement by 30% across enterprise applications\nAchieved an 85-90% on-time delivery rate across multiple concurrent feature streams\nTrained and mentored 8 new engineers on scalable API development with Node.js and Next.js; conducted regular code reviews\nStack: Node.js, Vue.js, Next.js, MongoDB, PostgreSQL, REST API, Git, Agile/JIRA"
@@ -97,6 +101,7 @@ const sampleData: ResumeDraft = {
       company: "Infoicon Technologies",
       start: "2021-06",
       end: "2022-03",
+      current: false,
       location: "Noida, India",
       highlights:
         "Led end-to-end delivery of a MERN-based Job Manager from architecture through Kubernetes deployment, driving a 25% increase in client satisfaction\nArchitected Feathers.js microservices with PostgreSQL, exposing REST and WebSocket APIs consumed by Nuxt.js frontends\nBuilt a real-time chat application with text, audio, and video using Node.js and WebSockets, supporting 5,000+ concurrent users\nImplemented 3D geospatial mesh views using Vue.js, THREE.js, and Mapbox GL\nMentored junior engineers on JavaScript, PHP, Laravel, CodeIgniter, Vue.js, and Node.js best practices\nStack: Node.js, MongoDB, PostgreSQL, Feathers.js, Nuxt.js, Vuetify, Vue.js, THREE.js, WebSocket, Kubernetes, REST API"
@@ -106,6 +111,7 @@ const sampleData: ResumeDraft = {
       company: "Binary Semantics Limited",
       start: "2020-03",
       end: "2021-06",
+      current: false,
       location: "Gurugram, India",
       highlights:
         "Delivered solutions for NerdsDesk CRM, NerdsShop E-Commerce, and SupportNerds Tech Support using PHP, Laravel, and CodeIgniter\nManaged seven parallel projects across CRM, E-Commerce, and blog platforms while maintaining code quality and client SLAs\nCollaborated with QA and design teams to identify defects and improve overall system performance\nStack: PHP, Laravel, CodeIgniter, Vue.js, Node.js, MySQL, WordPress, HTML/CSS, Git"
@@ -115,6 +121,7 @@ const sampleData: ResumeDraft = {
       company: "Webkul Software Pvt Ltd",
       start: "2017-07",
       end: "2020-03",
+      current: false,
       location: "Noida, India",
       highlights:
         "Developed 15+ production extensions for Shopware 6 and OpenCart E-Commerce platforms including POS, Marketplace, QuickBooks Connector, and payment gateways\nBuilt Seller-Buyer Chat and Admin-Buyer Chat modules using Node.js, PHP, and MySQL for real-time in-platform messaging\nTrained 10+ developers on OpenCart and Shopware 6 extension development and established modular PHP best practices\nImplemented CI/CD pipelines with Docker for consistent deployments across development and staging\nStack: PHP, Symfony, Node.js, Vue.js, OpenCart, Shopware 6, MySQL, Docker, CI/CD, REST API, Git"
@@ -221,8 +228,10 @@ function formatMonthYear(value: string) {
   return new Intl.DateTimeFormat("en", { month: "short", year: "numeric" }).format(new Date(year, month - 1));
 }
 
-function formatDateRange(start: string, end: string) {
-  return [formatMonthYear(start), formatMonthYear(end)].filter(Boolean).join(" - ");
+function formatDateRange(start: string, end: string, current = false) {
+  const formattedStart = formatMonthYear(start);
+  const formattedEnd = current ? "Present" : formatMonthYear(end);
+  return [formattedStart, formattedEnd].filter(Boolean).join(" - ");
 }
 
 function assignDraft(nextDraft: ResumeDraft) {
@@ -230,7 +239,7 @@ function assignDraft(nextDraft: ResumeDraft) {
 }
 
 function addExperience() {
-  resume.experience.push({ role: "", company: "", start: "", end: "", location: "", highlights: "" });
+  resume.experience.push({ role: "", company: "", start: "", end: "", current: false, location: "", highlights: "" });
 }
 
 function addEducation() {
@@ -428,8 +437,12 @@ onMounted(() => {
                 </div>
                 <div class="field-grid">
                   <label>Start<input v-model="item.start" type="month" /></label>
-                  <label>End<input v-model="item.end" type="month" /></label>
+                  <label>End<input v-model="item.end" type="month" :disabled="item.current" /></label>
                 </div>
+                <label class="checkbox-label">
+                  <input v-model="item.current" type="checkbox" @change="item.current ? (item.end = '') : item.end" />
+                  <span>Current job / presently working here</span>
+                </label>
                 <label>Location<input v-model="item.location" placeholder="Remote" /></label>
                 <label>
                   Highlights
@@ -577,7 +590,7 @@ onMounted(() => {
                   <template v-if="item.role || item.company || item.highlights">
                     <div class="item-head">
                       <h4>{{ item.role || "Role title" }}</h4>
-                      <span>{{ formatDateRange(item.start, item.end) }}</span>
+                      <span>{{ formatDateRange(item.start, item.end, item.current) }}</span>
                     </div>
                     <p class="item-sub">{{ [item.company, item.location].filter(Boolean).join(" | ") }}</p>
                     <ul v-if="splitLines(item.highlights).length">
