@@ -1,5 +1,5 @@
 <script setup lang="ts">
-type TemplateName = "classic" | "modern" | "compact";
+type TemplateName = "classic" | "modern" | "compact" | "executive" | "sidebar";
 
 interface ExperienceItem {
   role: string;
@@ -145,6 +145,14 @@ const tabs = [
   { id: "education", label: "Education" },
   { id: "skills", label: "Skills" },
   { id: "style", label: "Style" }
+];
+
+const templateOptions: Array<{ value: TemplateName; label: string; description: string }> = [
+  { value: "classic", label: "Classic", description: "Original balanced resume layout" },
+  { value: "modern", label: "Modern", description: "Bold header with clean sections" },
+  { value: "compact", label: "Compact", description: "Dense layout for longer careers" },
+  { value: "executive", label: "Executive", description: "Refined serif headings and spacing" },
+  { value: "sidebar", label: "Sidebar", description: "Two-column profile-first resume" }
 ];
 
 const colors = [
@@ -472,10 +480,24 @@ onMounted(() => {
           <section v-show="activeTab === 'style'" class="form-section active">
             <fieldset>
               <legend>Template</legend>
-              <div class="choice-row">
-                <label><input v-model="resume.template" type="radio" value="classic" /> Classic</label>
-                <label><input v-model="resume.template" type="radio" value="modern" /> Modern</label>
-                <label><input v-model="resume.template" type="radio" value="compact" /> Compact</label>
+              <div class="template-grid">
+                <label
+                  v-for="template in templateOptions"
+                  :key="template.value"
+                  class="template-option"
+                  :class="{ active: resume.template === template.value }"
+                >
+                  <input v-model="resume.template" type="radio" :value="template.value" />
+                  <span class="template-thumb" :class="`thumb-${template.value}`">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </span>
+                  <span>
+                    <strong>{{ template.label }}</strong>
+                    <small>{{ template.description }}</small>
+                  </span>
+                </label>
               </div>
             </fieldset>
             <fieldset>

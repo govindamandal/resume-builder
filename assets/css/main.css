@@ -267,7 +267,8 @@ button:focus-visible {
   background: #fff;
 }
 
-.choice-row {
+.choice-row,
+.template-grid {
   display: grid;
   gap: 10px;
 }
@@ -283,6 +284,108 @@ button:focus-visible {
 
 .choice-row input {
   width: auto;
+}
+
+.template-grid {
+  grid-template-columns: 1fr;
+}
+
+.template-option {
+  grid-template-columns: 74px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.template-option.active {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 7%, #fff);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 14%, transparent);
+}
+
+.template-option input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.template-option strong,
+.template-option small {
+  display: block;
+}
+
+.template-option small {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.25;
+}
+
+.template-thumb {
+  display: grid;
+  align-content: start;
+  gap: 5px;
+  width: 62px;
+  height: 78px;
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: inset 0 0 0 3px #f8fafc;
+}
+
+.template-thumb span {
+  display: block;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--accent);
+}
+
+.template-thumb span:nth-child(2) {
+  width: 80%;
+  background: #cbd5e1;
+}
+
+.template-thumb span:nth-child(3) {
+  width: 58%;
+  background: #e2e8f0;
+}
+
+.thumb-modern {
+  padding-top: 0;
+  border-top: 18px solid var(--accent);
+}
+
+.thumb-compact {
+  gap: 4px;
+  padding: 7px;
+}
+
+.thumb-compact span {
+  height: 4px;
+}
+
+.thumb-executive {
+  border-top: 4px solid #111827;
+}
+
+.thumb-executive span {
+  background: #111827;
+}
+
+.thumb-sidebar {
+  grid-template-columns: 18px 1fr;
+  gap: 5px;
+}
+
+.thumb-sidebar::before {
+  content: "";
+  grid-row: 1 / span 3;
+  border-radius: 4px;
+  background: var(--accent);
 }
 
 fieldset {
@@ -507,6 +610,80 @@ legend {
 
 .template-compact .resume-section {
   margin-top: 18px;
+}
+
+.template-executive {
+  padding: 0.72in;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.template-executive .resume-header {
+  text-align: center;
+  border-bottom: 1px solid #111827;
+}
+
+.template-executive .resume-header h2 {
+  font-size: 2.2rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.template-executive .contact-line {
+  justify-content: center;
+}
+
+.template-executive .resume-section h3 {
+  color: #111827;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 5px;
+  letter-spacing: 0.16em;
+}
+
+.template-executive .skill-pills span {
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: #fff;
+}
+
+.template-sidebar {
+  display: grid;
+  grid-template-columns: 2.25in 1fr;
+  gap: 0;
+  padding: 0;
+}
+
+.template-sidebar .resume-header {
+  grid-row: 1 / span 2;
+  padding: 0.62in 0.28in;
+  color: #fff;
+  border: 0;
+  background: var(--accent);
+}
+
+.template-sidebar .resume-header h2,
+.template-sidebar .resume-header .contact-line {
+  color: #fff;
+}
+
+.template-sidebar .resume-header h2 {
+  font-size: 1.85rem;
+}
+
+.template-sidebar .contact-line {
+  display: grid;
+  margin-top: 18px;
+}
+
+.template-sidebar .resume-body {
+  padding: 0.62in 0.55in 0.62in 0.42in;
+}
+
+.template-sidebar .resume-section h3 {
+  color: #111827;
+}
+
+.template-sidebar .skill-pills span {
+  background: #eef2ff;
 }
 
 @media (max-width: 980px) {
