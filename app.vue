@@ -38,11 +38,11 @@ interface ResumeDraft {
 const STORAGE_KEY = "resume-studio-draft";
 
 const sampleData: ResumeDraft = {
-  name: "Avery Taylor",
+  name: "Govinda Mandal",
   title: "Senior Product Designer",
   email: "avery.taylor@email.com",
-  phone: "+1 555 0188",
-  location: "Austin, TX",
+  phone: "",
+  location: "Delhi",
   website: "averytaylor.design",
   summary:
     "Product designer with 7 years of experience creating user-centered SaaS products. Skilled at turning research into clear product strategy, polished interfaces, and measurable growth.",
@@ -282,7 +282,7 @@ onMounted(() => {
           <section v-show="activeTab === 'profile'" class="form-section active">
             <label>
               Full name
-              <input v-model="resume.name" name="name" placeholder="Avery Taylor" />
+              <input v-model="resume.name" name="name" placeholder="Govinda Mandal" />
             </label>
             <label>
               Professional title
@@ -295,13 +295,13 @@ onMounted(() => {
               </label>
               <label>
                 Phone
-                <input v-model="resume.phone" name="phone" placeholder="+1 555 0188" />
+                <input v-model="resume.phone" name="phone" placeholder="Optional" />
               </label>
             </div>
             <div class="field-grid">
               <label>
                 Location
-                <input v-model="resume.location" name="location" placeholder="Austin, TX" />
+                <input v-model="resume.location" name="location" placeholder="Delhi" />
               </label>
               <label>
                 Website
